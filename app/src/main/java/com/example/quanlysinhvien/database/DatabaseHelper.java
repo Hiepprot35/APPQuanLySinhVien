@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.quanlysinhvien.model.Major;
 import com.example.quanlysinhvien.model.Student;
 import com.example.quanlysinhvien.model.User;
 
@@ -41,6 +42,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("user", null, values);
         db.close();
     }
+    public String[] getAllClassesbyMajor(String MajorId)
+    {
+        ArrayList<String> list_class = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query("classes", null, "major_id = ?", new String[] {MajorId}, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                String major_name = c.getString(c.getColumnIndexOrThrow("major_id"));
+                String id = c.getString(c.getColumnIndexOrThrow("id"));
+                String classs_name = c.getString(c.getColumnIndexOrThrow("classs_name"));
+
+                list_class.add(id +" - "+classs_name);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        db.close();
+
+        // Chuyển ArrayList thành mảng String[]
+        return list_class.toArray(new String[0]);
+    }
+    public String[] getAllMajor() {
+        ArrayList<String> list_major = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query("major", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                String major_name = c.getString(c.getColumnIndexOrThrow("major_name"));
+                String id = c.getString(c.getColumnIndexOrThrow("id"));
+
+                list_major.add(id +" - "+major_name);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        db.close();
+
+        // Chuyển ArrayList thành mảng String[]
+        return list_major.toArray(new String[0]);
+    }
+
     public ArrayList<Student> getAllStudent()
     {
         ArrayList<Student> list_student=new ArrayList<>();
@@ -51,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String fullname=c.getString(c.getColumnIndexOrThrow("fullname"));
                 String major_id=c.getString(c.getColumnIndexOrThrow("major_id"));
                 String email=c.getString(c.getColumnIndexOrThrow("email"));
+                String country=c.getString(c.getColumnIndexOrThrow("country"));
 
                 String id=c.getString(c.getColumnIndexOrThrow("id"));
                 String class_id=c.getString(c.getColumnIndexOrThrow("class_id"));
@@ -58,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String phone_number=c.getString(c.getColumnIndexOrThrow("phone_number"));
 
                 byte[] avatar=c.getBlob(c.getColumnIndexOrThrow("avatar"));
-               Student student =new Student(id,fullname,email,null,null,phone_number,date_of_birth,null,null,null,avatar);
+               Student student =new Student(id,fullname,email,country,null,phone_number,date_of_birth,class_id,major_id,null,avatar);
                list_student.add(student);
 
             } while (c.moveToNext());

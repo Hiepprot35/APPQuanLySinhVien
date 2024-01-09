@@ -54,6 +54,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         TextView student_SDT_layout=listItem.findViewById(R.id.student_SDT_layout);
         TextView student_bd_layout=listItem.findViewById(R.id.student_bd_layout);
         TextView student_class_layout=listItem.findViewById(R.id.student_class_layout);
+        TextView student_major_layout=listItem.findViewById(R.id.student_major_layout);
 
         TextView student_ID_layout=listItem.findViewById(R.id.student_ID_layout);
         TextView student_Email_layout=listItem.findViewById(R.id.student_Email_layout);
@@ -62,7 +63,8 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         student_Email_layout.setText(currentStudent.getEmail());
         student_SDT_layout.setText(currentStudent.getPhone_number());
         student_bd_layout.setText(currentStudent.getDate_of_birth());
-
+        student_class_layout.setText(currentStudent.getClass_id());
+        student_major_layout.setText(currentStudent.getMajor_id());
         student_ID_layout.setText(currentStudent.getId());
         byte[] avatarData = currentStudent.getAvatar();
         if (avatarData != null) {

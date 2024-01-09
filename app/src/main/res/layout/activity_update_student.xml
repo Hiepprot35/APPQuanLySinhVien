@@ -128,7 +128,7 @@
             </RadioGroup>
 
             <Spinner
-                android:id="@+id/spin_class"
+                android:id="@+id/spin_major_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_txt"
@@ -136,7 +136,7 @@
                 android:layout_marginBottom="10dp" />
 
             <Spinner
-                android:id="@+id/spin_major"
+                android:id="@+id/spin_class_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"

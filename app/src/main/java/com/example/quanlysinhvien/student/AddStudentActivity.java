@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,15 +39,19 @@ public class AddStudentActivity extends AppCompatActivity {
     Function_user functionUser;
     byte[] imageData;
     private static final int PICK_IMAGE = 1;
+    String selected_major;
+    String selected_class;
 
-    String classes[] = {"KTPM", "CNTT", "KT"};
-    String major[] = {"Kỹ thuật phần mềm", "Công nghệ thông tin", "Kinh tế"};
+    String classes[];
+    String major[] ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_student);
+        dbHelper = new DatabaseHelper(getApplicationContext());
+
         date_picker_add_student=findViewById(R.id.edtbirthday);
         functionUser=new Function_user();
         edtmaSV=findViewById(R.id.edtmaSV);
@@ -58,14 +63,11 @@ public class AddStudentActivity extends AppCompatActivity {
         edtEmailSV = findViewById(R.id.edtEmailSV);
         //tạo spinner cho lớp học
         spin_class = findViewById(R.id.spin_class);
-        ArrayAdapter<String> class_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, classes);
-        spin_class.setAdapter(class_adapter);
         //tạo spinner cho môn học
         spin_major = findViewById(R.id.spin_major);
+        major= dbHelper.getAllMajor();
         ArrayAdapter<String> major_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, major);
         spin_major.setAdapter(major_adapter);
-
-        dbHelper = new DatabaseHelper(getApplicationContext());
         if(date_picker_add_student != null) {
             date_picker_add_student.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,6 +86,36 @@ public class AddStudentActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, PICK_IMAGE);
             }
         });
+        spin_major.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedValue = parent.getItemAtPosition(position).toString();
+                String [] major_id_selected=selectedValue.split(" - ");
+                selected_major=major_id_selected[0];
+                if(selected_major!=null) {
+                    classes = dbHelper.getAllClassesbyMajor(selected_major);
+                    ArrayAdapter<String> class_adapter = new ArrayAdapter<String>(AddStudentActivity.this, android.R.layout.simple_spinner_dropdown_item, classes);
+                    spin_class.setAdapter(class_adapter);
+                }}
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spin_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedValue = parent.getItemAtPosition(position).toString();
+                String [] class_id_selected=selectedValue.split(" - ");
+                selected_class=class_id_selected[0];
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         btn_add_student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +125,7 @@ public class AddStudentActivity extends AppCompatActivity {
                 String country = edtcountry.getText().toString();
                 String email = edtEmailSV.getText().toString();
                 String id = edtmaSV.getText().toString();
-                student_new = new Student(id, fullname, email, country, null, number_phone, date, null, null, null, imageData);
+                student_new = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, imageData);
                 if (imageData == null || fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
                 || id.isEmpty()
                 ) {

@@ -125,7 +125,13 @@
                 android:textSize="16sp"
                 android:text="Nữ" />
         </RadioGroup>
-
+        <Spinner
+            android:id="@+id/spin_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_txt"/>
         <Spinner
             android:id="@+id/spin_class"
             android:layout_width="match_parent"
@@ -134,13 +140,7 @@
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp" />
 
-        <Spinner
-            android:id="@+id/spin_major"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_txt"/>
+
 
         <Button
             android:id="@+id/btn_add_student"
