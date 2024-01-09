@@ -150,7 +150,7 @@ public class SubjectActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int sotinchi = Integer.parseInt(edt_siso.getText().toString());
+//                int sotinchi = Integer.parseInt(edt_siso.getText().toString());
                 String mamon = edt_mamon.getText().toString();
                 String tenmon = edt_tenmon.getText().toString();
 
@@ -236,7 +236,7 @@ public class SubjectActivity extends AppCompatActivity {
         String data = "";
         while (c.isAfterLast() == false)
         {
-            data = c.getString(0)+ " - " + c.getString(1) + " - " + c.getString(2);
+            data = c.getString(0)+ " - " + c.getString(2) + " - " + c.getString(1);
             c.moveToNext();
             mylist.add(data);
         }

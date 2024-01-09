@@ -133,7 +133,7 @@ public class AddStudentActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if(id.length()<4 && number_phone.length()<4) {
+                    if(id.length()<4 || number_phone.length()<4) {
                         Toast.makeText(AddStudentActivity.this, "Độ dài MSSV hay SĐT không nhỏ hơn 4 kí tự ", Toast.LENGTH_LONG).show();
 
                     }

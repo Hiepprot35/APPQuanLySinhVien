@@ -152,11 +152,17 @@ public class UpdateStudent extends AppCompatActivity {
                 }
                 else
                 {
-                    Student updateStudent_data = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, avatarData);
-                     dbHelper.update_Student(updateStudent_data);
+                    if(id.length()<4 || number_phone.length()<4) {
+                        Toast.makeText(UpdateStudent.this, "Độ dài MSSV hay SĐT không nhỏ hơn 4 kí tự ", Toast.LENGTH_LONG).show();
+
+                    }
+                    else {
+                        Student updateStudent_data = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, avatarData);
+                        dbHelper.update_Student(updateStudent_data);
                         Intent intent_addsv = new Intent(UpdateStudent.this, StudentActivity.class);
                         startActivity(intent_addsv);
                         Toast.makeText(UpdateStudent.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
