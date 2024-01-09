@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.quanlysinhvien.R;
 import com.example.quanlysinhvien.database.DatabaseHelper;
+import com.example.quanlysinhvien.function.Function_user;
 import com.example.quanlysinhvien.model.Major;
 
 import java.io.File;
@@ -43,12 +44,14 @@ public class ClassesActivity extends AppCompatActivity {
     ArrayAdapter<String> myadapter;
     String[] majors;
     String major_selected;
+    Function_user functionUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classes);
         dbHelper=new DatabaseHelper(getApplicationContext());
+        functionUser=new Function_user();
         majors=dbHelper.getAllMajor();
         edt_maLop = findViewById(R.id.edt_malop1);
         edt_tenLop = findViewById(R.id.edt_tenLop1);
@@ -59,7 +62,6 @@ public class ClassesActivity extends AppCompatActivity {
         btn_query_lop = findViewById(R.id.btn_query_lop);
         ArrayAdapter<String> major_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, majors);
         major_class_spin.setAdapter(major_adapter);
-
         lv = findViewById(R.id.lv);
         mylist = new ArrayList<>();
         myadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mylist);
@@ -74,7 +76,7 @@ public class ClassesActivity extends AppCompatActivity {
         String data = "";
         while (c.isAfterLast() == false)
         {
-            data ="Mã lớp: "+ c.getString(0) + " - Lớp: " + c.getString(2)+" - Mã ngành: "+ c.getString(1);
+            data = c.getString(0) + " - " + c.getString(2)+" - "+ c.getString(1);
             mylist.add(data);
             c.moveToNext();
         }
@@ -85,7 +87,6 @@ public class ClassesActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedValue = parent.getItemAtPosition(position).toString();
                 String [] major_id_selected=selectedValue.split(" - ");
-
                 major_selected=major_id_selected[0];
             }
 
@@ -150,6 +151,7 @@ public class ClassesActivity extends AppCompatActivity {
                 String tenlop = edt_tenLop.getText().toString();
                 ContentValues value = new ContentValues();
                 value.put("classs_name", tenlop);
+                value.put("major_id",major_selected);
                 int n = database.update("classes", value, "id = ?" , new String[]{malop} );
                 String msg = "";
                 if (n == 0)
@@ -178,6 +180,8 @@ public class ClassesActivity extends AppCompatActivity {
                 String [] data2=data.split(" - ");
                 edt_maLop.setText(data2[0]);
                 edt_tenLop.setText(data2[1]);
+                major_class_spin.setSelection(functionUser.checkPositon(majors,data2[2]));
+
 
             }
         });
@@ -207,7 +211,7 @@ public class ClassesActivity extends AppCompatActivity {
         String data = "";
         while (c.isAfterLast() == false)
         {
-            data ="Mã lớp: "+ c.getString(0) + " - Lớp: " + c.getString(2)+" - Mã ngành: "+ c.getString(1);
+            data = c.getString(0) + " - " + c.getString(2)+" - "+ c.getString(1);
             c.moveToNext();
             mylist.add(data);
         }

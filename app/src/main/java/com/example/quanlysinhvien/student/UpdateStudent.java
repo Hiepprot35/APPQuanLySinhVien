@@ -80,7 +80,7 @@ public class UpdateStudent extends AppCompatActivity {
             majors=dbHelper.getAllMajor();
             ArrayAdapter<String> spin_major_adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,majors);
             spin_major_update.setAdapter(spin_major_adapter);
-            int position = checkPositon(majors,student.getMajor_id());
+            int position = function_user.checkPositon(majors,student.getMajor_id());
             Log.d("Position", String.valueOf(position));
             spin_major_update.setSelection(position);
             Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
@@ -160,16 +160,7 @@ public class UpdateStudent extends AppCompatActivity {
             }
         });
     }
-    public int checkPositon(String[] list_obj,String value)
-    {
-        for(int i=0;i<list_obj.length;i++)
-        {
-            if (value.equals(list_obj[i].split(" - ")[0])) {
-                return i;
-            }
-        }
-        return -1;
-    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

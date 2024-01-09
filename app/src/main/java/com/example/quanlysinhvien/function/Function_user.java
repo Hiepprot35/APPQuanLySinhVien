@@ -69,5 +69,14 @@ public class Function_user {
 
         return byteArrayOutputStream.toByteArray();
     }
-
+    public int checkPositon(String[] list_obj,String value)
+    {
+        for(int i=0;i<list_obj.length;i++)
+        {
+            if (value.equals(list_obj[i].split(" - ")[0])) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
