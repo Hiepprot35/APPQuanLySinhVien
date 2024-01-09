@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_background"
+    android:backgroundTint="@null"
+    android:gravity="center"
+    android:keepScreenOn="false"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/sv_1" />
+
+    <TextView
+        android:id="@+id/title_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Đăng nhập"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtUsername"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_txt"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/baseline_person_2_24"
+        android:hint="Tên đăng nhập" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:hint="Mật khẩu"
+        android:paddingLeft="10dp"
+        android:background="@drawable/custom_txt"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:backgroundTint="#0992FF"
+        android:text="Đăng nhập"
+        android:textSize="18dp"
+        app:cornerRadius="10dp" />
+
+    <TextView
+        android:id="@+id/txt_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/custom_txt"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="Tạo tài khoản"
+        android:textAlignment="center"
+        android:textSize="18dp" />
+</LinearLayout>

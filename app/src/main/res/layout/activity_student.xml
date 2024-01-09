@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".student.StudentActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="DANH SÁCH SINH VIÊN"
+        android:background="#2196F3"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtSearchSV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:background="@drawable/custom_btn"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Nhập tên sinh viên muốn tìm" />
+
+        <ImageButton
+            android:id="@+id/btn_searchSV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/search" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <ImageButton
+        android:id="@+id/btn_next_addSV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="320dp"
+        android:layout_marginBottom="10dp"
+        android:background="#00000000"
+        android:src="@drawable/baseline_add_circle_24"
+        tools:src="@drawable/baseline_add_circle_24" />
+
+</LinearLayout>

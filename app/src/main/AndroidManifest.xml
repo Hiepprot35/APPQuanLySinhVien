@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/sv"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/sv"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.QuanLySinhVien"
+        tools:targetApi="31">
+        <activity
+            android:name=".home.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".student.UpdateStudent"
+            android:exported="false" />
+        <activity
+            android:name=".UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subject.SubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".major.MajorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".classes.ClassesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".student.AddStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".student.StudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
