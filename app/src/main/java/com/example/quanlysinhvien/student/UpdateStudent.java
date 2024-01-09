@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlysinhvien.R;
@@ -31,7 +32,8 @@ import java.util.Calendar;
 
 public class UpdateStudent extends AppCompatActivity {
     DatabaseHelper dbHelper;
-    EditText edtphone_update, edtEmailSV_update, edtcountry_update, edtnameSV_update,edtmaSV_update;
+    EditText edtphone_update, edtEmailSV_update, edtcountry_update, edtnameSV_update;
+    TextView edtmaSV_update;
     byte[] avatarData;
     ImageView avatarStudent;
     Button updateStudent;

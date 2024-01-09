@@ -42,6 +42,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("user", null, values);
         db.close();
     }
+    public void updateUser(User user)
+    {
+
+    }
     public String[] getAllClassesbyMajor(String MajorId)
     {
         ArrayList<String> list_class = new ArrayList<>();
@@ -154,7 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         values.put("avatar",student.getAvatar());
 
-        user.put("username",student.getPhone_number());
+        user.put("username",student.getId());
         user.put("role",1);
         user.put("password",student.getPhone_number());
 
@@ -186,6 +190,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        ContentValues newpass_user = new ContentValues();
+
+
         Field[] fields = student.getClass().getDeclaredFields();
         try {
             for (Field field : fields) {
@@ -204,11 +211,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         values.put("avatar",student.getAvatar());
+        newpass_user.put("password",student.getPhone_number());
+        db.update("user",newpass_user,"username=?",new String[] {student.getId()});
 
         db.update("student",values,"id=?",new String[] {student.getId()});
         db.close();
 
     }
+    public String getByTableColumn(String table, String column,String column_return, String value) {
+        String stringValues = ""; // Khởi tạo một giá trị mặc định
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = column + " = ?";
+        String[] selectionArgs = {value};
+        Cursor cursor = db.query(table, null, selection, selectionArgs, null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                stringValues = cursor.getString(cursor.getColumnIndexOrThrow(column_return));
+            }
+            cursor.close(); // Đóng cursor sau khi sử dụng
+        }
+
+        db.close(); // Đóng kết nối cơ sở dữ liệu sau khi sử dụng
+
+        return stringValues;
+    }
+
     public Student getStudentBy(String colum,String value) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = colum + " = ?";

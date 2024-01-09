@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Login thành công", Toast.LENGTH_LONG).show();
                                 Intent userIntent = new Intent(MainActivity.this, UserActivity.class);
                                 userIntent.putExtra("user_name", username);
+                                userIntent.putExtra("password", password);
 
                                 startActivity(userIntent);
                             }

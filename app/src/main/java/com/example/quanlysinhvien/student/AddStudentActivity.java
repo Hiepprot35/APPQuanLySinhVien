@@ -133,14 +133,20 @@ public class AddStudentActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if(dbHelper.find_class_unique("phone_number",number_phone) && dbHelper.find_class_unique("id",id)) {
-                        dbHelper.add_Student(student_new);
-                        Intent intent_addsv = new Intent(AddStudentActivity.this, StudentActivity.class);
-                        startActivity(intent_addsv);
-                        Toast.makeText(AddStudentActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
+                    if(id.length()<4 && number_phone.length()<4) {
+                        Toast.makeText(AddStudentActivity.this, "Độ dài MSSV hay SĐT không nhỏ hơn 4 kí tự ", Toast.LENGTH_LONG).show();
+
                     }
-                    else {
-                        Toast.makeText(AddStudentActivity.this, "MSSV hoặc SĐT đã tồn tại", Toast.LENGTH_LONG).show();
+                        else{
+                            if (dbHelper.find_class_unique("phone_number", number_phone) && dbHelper.find_class_unique("id", id)) {
+                                dbHelper.add_Student(student_new);
+                                Intent intent_addsv = new Intent(AddStudentActivity.this, StudentActivity.class);
+                                startActivity(intent_addsv);
+                                Toast.makeText(AddStudentActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(AddStudentActivity.this, "MSSV hoặc SĐT đã tồn tại", Toast.LENGTH_LONG).show();
+                            }
+
                     }
                 }
             }
