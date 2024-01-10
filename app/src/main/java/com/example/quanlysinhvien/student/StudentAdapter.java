@@ -52,19 +52,19 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         ImageView avatar_student = listItem.findViewById(R.id.avatar_student_layout);
         TextView student_name_layout = listItem.findViewById(R.id.student_name_layout);
         TextView student_SDT_layout=listItem.findViewById(R.id.student_SDT_layout);
-        TextView student_bd_layout=listItem.findViewById(R.id.student_bd_layout);
+//        TextView student_bd_layout=listItem.findViewById(R.id.student_bd_layout);
         TextView student_class_layout=listItem.findViewById(R.id.student_class_layout);
         TextView student_major_layout=listItem.findViewById(R.id.student_major_layout);
 
         TextView student_ID_layout=listItem.findViewById(R.id.student_ID_layout);
-        TextView student_Email_layout=listItem.findViewById(R.id.student_Email_layout);
+//        TextView student_Email_layout=listItem.findViewById(R.id.student_Email_layout);
         Student currentStudent = students.get(position);
         student_name_layout.setText(currentStudent.getFullname());
-        student_Email_layout.setText(currentStudent.getEmail());
+//        student_Email_layout.setText(currentStudent.getEmail());
         student_SDT_layout.setText(currentStudent.getPhone_number());
-        student_bd_layout.setText(currentStudent.getDate_of_birth());
-        student_class_layout.setText(currentStudent.getClass_id());
-        student_major_layout.setText(currentStudent.getMajor_id());
+//        student_bd_layout.setText(currentStudent.getDate_of_birth());
+        student_class_layout.setText(dbHelper.getByTableColumn("classes","id","classs_name",currentStudent.getClass_id()));
+        student_major_layout.setText(dbHelper.getByTableColumn("major","id","major_name",currentStudent.getMajor_id()));
         student_ID_layout.setText(currentStudent.getId());
         byte[] avatarData = currentStudent.getAvatar();
         if (avatarData != null) {

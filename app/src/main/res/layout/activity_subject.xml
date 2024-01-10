@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/holo_green_dark"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".subject.SubjectActivity" >
@@ -30,18 +29,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Ma mon: "
-            android:textColor="#FFEB3B"
+            android:textColor="#000000"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/edt_mamon"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,24 +54,30 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Ten mon:"
-            android:textColor="#FFEB3B"
+            android:textColor="#090909"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/edt_mon"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/black" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn ngành: "
+            android:textColor="#090909"
+            android:textSize="20dp" />
         <Spinner
             android:id="@+id/spin_major_monhoc"
             android:layout_width="wrap_content"
