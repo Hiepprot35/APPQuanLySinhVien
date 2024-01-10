@@ -1,10 +1,15 @@
 package com.example.quanlysinhvien.student;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +27,8 @@ import com.example.quanlysinhvien.database.DatabaseHelper;
 import com.example.quanlysinhvien.function.Function_user;
 import com.example.quanlysinhvien.model.Student;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -125,8 +132,26 @@ public class AddStudentActivity extends AppCompatActivity {
                 String country = edtcountry.getText().toString();
                 String email = edtEmailSV.getText().toString();
                 String id = edtmaSV.getText().toString();
+                if(imageData == null )
+                {
+                    Resources resources = getResources();
+                    Drawable drawable = resources.getDrawable(R.drawable.sv);
+                    Bitmap bitmap = null;
+                    if (drawable instanceof BitmapDrawable) {
+                        bitmap = ((BitmapDrawable) drawable).getBitmap();
+                    }
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    InputStream inputStream = new ByteArrayInputStream(stream.toByteArray());
+                    try {
+                        imageData = functionUser.resizeImage(inputStream, 200, 200);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
                 student_new = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, imageData);
-                if (imageData == null || fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
+                if ( fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
                 || id.isEmpty()
                 ) {
                     Toast.makeText(AddStudentActivity.this, "Không được để trống thông tin", Toast.LENGTH_LONG).show();
@@ -161,7 +186,7 @@ public class AddStudentActivity extends AppCompatActivity {
             android.net.Uri selectedImageUri = data.getData();
             try{
                 InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
-                imageData = functionUser.resizeImage(inputStream, 180, 180)  ;
+                imageData = functionUser.resizeImage(inputStream, 200, 200)  ;
                 img_avatar.setImageURI(selectedImageUri);
 
             } catch (IOException e)
