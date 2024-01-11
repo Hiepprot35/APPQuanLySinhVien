@@ -73,6 +73,7 @@ public class UserActivity extends AppCompatActivity {
 //            avatarData = student.getAvatar();
 //            Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
 //            avatarStudent.setImageBitmap(bitmap);
+
             changepass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

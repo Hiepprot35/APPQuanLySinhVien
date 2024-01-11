@@ -1,11 +1,16 @@
 package com.example.quanlysinhvien.major;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +20,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.quanlysinhvien.R;
+import com.example.quanlysinhvien.model.Major;
+import com.example.quanlysinhvien.model.Student;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,6 +39,7 @@ public class MajorActivity extends AppCompatActivity {
 
     EditText edt_manganh, edt_tennganh;
     Button btn_insert_nganh, btn_update_nganh, btn_delete_nganh, btn_query_nganh;
+    EditText edtSearchMajor;
 
     ListView lv;
 
@@ -46,6 +54,7 @@ public class MajorActivity extends AppCompatActivity {
         edt_manganh = findViewById(R.id.edt_manganh);
         edt_tennganh = findViewById(R.id.edt_tennganh);
 
+        edtSearchMajor=findViewById(R.id.edtSearchMajor);
         btn_insert_nganh = findViewById(R.id.btn_insert_nganh);
         btn_delete_nganh = findViewById(R.id.btn_delete_nganh);
         btn_update_nganh = findViewById(R.id.btn_update_nganh);
@@ -91,6 +100,23 @@ public class MajorActivity extends AppCompatActivity {
                 Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+        edtSearchMajor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String name=edtSearchMajor.getText().toString();
+                getListMajorLike(name);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         btn_delete_nganh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,22 +134,26 @@ public class MajorActivity extends AppCompatActivity {
                 Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+
         btn_update_nganh.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String tennganh = edt_tennganh.getText().toString();
                 String manganh = edt_manganh.getText().toString();
-                ContentValues myvalue = new ContentValues();
-                myvalue.put("major_name", tennganh);
-                int n = database.update("major", myvalue, "id = ?", new String[]{manganh});
-                String msg = "";
-                if (n == 0) {
-                    msg = "No record to Update";
-                } else {
-                    loading();
-                    msg = n + "redcord is Updated";
-                }
-                Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
+                showInputDialog(tennganh,manganh, database);
+
+//                ContentValues myvalue = new ContentValues();
+//                myvalue.put("major_name", tennganh);
+//                int n = database.update("major", myvalue, "id = ?", new String[]{manganh});
+//                String msg = "";
+//                if (n == 0) {
+//                    msg = "No record to Update";
+//                } else {
+//                    loading();
+//                    msg = n + "redcord is Updated";
+//                }
+//                Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -150,7 +180,9 @@ public class MajorActivity extends AppCompatActivity {
                 String[] data2 = data.split(" - ");
                 edt_manganh.setText(data2[0]);
                 edt_tennganh.setText(data2[1]);
-
+                String tennganh = edt_tennganh.getText().toString();
+                String manganh = edt_manganh.getText().toString();
+                showInputDialog(tennganh,manganh,database);
             }
         });
     }
@@ -170,16 +202,35 @@ public class MajorActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void loading()
+    public void getListMajorLike( String value)
     {
         mylist.clear();
-        Cursor c = database.query("major", null, null,null, null,null, null,null);
+        Cursor c=database.query( "major",
+                null,
+                "major_name" + " LIKE ?",
+                new String[]{"%" + value + "%"},
+                null,
+                null,
+                null);
         c.moveToNext();
         String data = "";
-        while (c.isAfterLast() == false)
-        {
-            data = c.getString(0)+ " - " + c.getString(1) ;
+        while (c.isAfterLast() == false) {
+            data = c.getString(0) + " - " + c.getString(1);
+            c.moveToNext();
+            mylist.add(data);
+        }
+        c.close();
+        myadapter.notifyDataSetChanged();
+
+        lv.invalidateViews();
+    }
+    private void loading() {
+        mylist.clear();
+        Cursor c = database.query("major", null, null, null, null, null, null, null);
+        c.moveToNext();
+        String data = "";
+        while (c.isAfterLast() == false) {
+            data = c.getString(0) + " - " + c.getString(1);
             c.moveToNext();
             mylist.add(data);
         }
@@ -189,6 +240,63 @@ public class MajorActivity extends AppCompatActivity {
         lv.invalidateViews();
 
     }
+
+    private void showInputDialog(String tennganh,String manganh, SQLiteDatabase database_input) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.activity_dialog_input, null);
+        builder.setView(dialogView);
+        EditText tennganhedt = dialogView.findViewById(R.id.editTextTenNganh);
+        EditText manganhedt = dialogView.findViewById(R.id.editTextMaNganh);
+        manganhedt.setText(manganh);
+        tennganhedt.setText(tennganh);
+        builder.setTitle("Cập nhập thông tin");
+
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String input1 = manganhedt.getText().toString();
+                String input2 = tennganhedt.getText().toString();
+
+                // Tạo ContentValues mới để cập nhật dữ liệu trong database
+                ContentValues myvalue2 = new ContentValues();
+                myvalue2.put("major_name", input2);
+
+                // Thực hiện cập nhật dữ liệu trong database
+                int n = database_input.update("major", myvalue2, "id = ?", new String[]{input1});
+
+                String msg = "";
+                if (n == 0) {
+                    msg = "No record to update";
+                } else {
+                    // Nếu có dữ liệu được cập nhật, hiển thị thông báo và thực hiện các thao tác khác (nếu cần)
+                    loading();
+                    String message = "Mã: " + input1 + "\nTên: " + input2;
+                    showToast(message);
+                    msg = n + " record is updated";
+                }
+
+                Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Đóng AlertDialog
+            }
+        });
+        // Tạo và hiển thị AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    private void showToast(String message) {
+        // Hàm hiển thị thông báo tạm thời (Toast)
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private String getDatabasePath() {
         return getApplicationInfo().dataDir + DB_PATH_SUFFIX+ DATABASE_NAME;
     }

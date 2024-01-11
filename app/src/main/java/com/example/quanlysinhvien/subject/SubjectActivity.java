@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +38,7 @@ public class SubjectActivity extends AppCompatActivity {
     String DATABASE_NAME="quan_ly_sinh_vien.db";
     Spinner spin_major_monhoc;
 
-    EditText edt_mamon, edt_tenmon, edt_siso;
+    EditText edt_mamon, edt_tenmon, edtSearchSubject;
     Button btn_insert, btn_update, btn_delete, btn_query, btn_nganh, btn_lop1;
 
     ListView lv;
@@ -58,6 +60,7 @@ public class SubjectActivity extends AppCompatActivity {
         spin_major_monhoc.setAdapter(major_adapter);
         edt_tenmon = findViewById(R.id.edt_mon);
         edt_mamon = findViewById(R.id.edt_mamon);
+        edtSearchSubject=findViewById(R.id.edtSearchSubject);
 //        edt_siso = findViewById(R.id.edt_siso);
 
         btn_insert = findViewById(R.id.btn_insert);
@@ -101,6 +104,23 @@ public class SubjectActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        edtSearchSubject.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String name=edtSearchSubject.getText().toString();
+                getListSubjectLike(name);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -228,7 +248,28 @@ public class SubjectActivity extends AppCompatActivity {
             }
         }
     }
+    public void getListSubjectLike( String value)
+    {
+        mylist.clear();
+        Cursor c=database.query( "subject",
+                null,
+                "name_subject" + " LIKE ?",
+                new String[]{"%" + value + "%"},
+                null,
+                null,
+                null);
+        c.moveToNext();
+        String data = "";
+        while (c.isAfterLast() == false) {
+            data = c.getString(0) + " - " + c.getString(2)+ " - " + c.getString(1);
+            c.moveToNext();
+            mylist.add(data);
+        }
+        c.close();
+        myadapter.notifyDataSetChanged();
 
+        lv.invalidateViews();
+    }
     private void loading(){
         mylist.clear();
         Cursor c = database.query("subject", null, null,null, null,null, null,null);

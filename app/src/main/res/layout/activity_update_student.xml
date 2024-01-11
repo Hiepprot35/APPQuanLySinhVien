@@ -93,6 +93,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <RadioGroup
+                android:id="@+id/rdg_gender_update"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
@@ -108,7 +109,7 @@
                     android:textSize="18sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioButton_nam_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -117,7 +118,7 @@
                     android:text="Nam" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/radioButton_nu_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -115,6 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return list_student;
     }
+
     public ArrayList<Student> getListStudentLike(String table_input,String fullname_input,String value)
     {
         ArrayList<Student> list_student=new ArrayList<>();
@@ -132,12 +133,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String major_id=c.getString(c.getColumnIndexOrThrow("major_id"));
                 String email=c.getString(c.getColumnIndexOrThrow("email"));
                 String country=c.getString(c.getColumnIndexOrThrow("country"));
-
                 String id=c.getString(c.getColumnIndexOrThrow("id"));
                 String class_id=c.getString(c.getColumnIndexOrThrow("class_id"));
                 String date_of_birth=c.getString(c.getColumnIndexOrThrow("date_of_birth"));
                 String phone_number=c.getString(c.getColumnIndexOrThrow("phone_number"));
-
                 byte[] avatar=c.getBlob(c.getColumnIndexOrThrow("avatar"));
                 Student student =new Student(id,fullname,email,country,null,phone_number,date_of_birth,class_id,major_id,null,avatar);
                 list_student.add(student);

@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +40,8 @@ public class UpdateStudent extends AppCompatActivity {
     ImageView avatarStudent;
     Button updateStudent;
     Button edtbirthday_update;
+    RadioGroup rdg_gender_update;
+    String gender;
     Function_user function_user;
     String[] majors,classes;
     String selected_major,selected_class;
@@ -61,6 +65,7 @@ public class UpdateStudent extends AppCompatActivity {
         avatarStudent=findViewById(R.id.img_avatar_update);
         edtphone_update = findViewById(R.id.edtphone_update);
         edtEmailSV_update = findViewById(R.id.edtEmailSV_update);
+        rdg_gender_update=findViewById(R.id.rdg_gender_update);
         edtnameSV_update = findViewById(R.id.edtnameSV_update);
         edtmaSV_update = findViewById(R.id.edtmaSV_update);
         Intent intent = getIntent();
@@ -78,7 +83,12 @@ public class UpdateStudent extends AppCompatActivity {
             edtmaSV_update.setText( student.getId());
             avatarData=student.getAvatar();
             classes= dbHelper.getAllClassesbyMajor(student.getMajor_id());
-
+            int selectedId=rdg_gender_update.getCheckedRadioButtonId();
+            if(selectedId!=1)
+            {
+                RadioButton gender_radio=findViewById(selectedId);
+                gender=gender_radio.getText().toString();
+            }
             majors=dbHelper.getAllMajor();
             ArrayAdapter<String> spin_major_adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,majors);
             spin_major_update.setAdapter(spin_major_adapter);
@@ -136,6 +146,13 @@ public class UpdateStudent extends AppCompatActivity {
                 startActivityForResult(galleryIntent, PICK_IMAGE_UPDATE);
             }
         });
+        rdg_gender_update.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rd=findViewById(checkedId);
+                gender=rd.getText().toString();
+            }
+        });
         updateStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +174,7 @@ public class UpdateStudent extends AppCompatActivity {
 
                     }
                     else {
-                        Student updateStudent_data = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, avatarData);
+                        Student updateStudent_data = new Student(id, fullname, email, country, gender, number_phone, date, selected_class, selected_major, null, avatarData);
                         dbHelper.update_Student(updateStudent_data);
                         Intent intent_addsv = new Intent(UpdateStudent.this, StudentActivity.class);
                         startActivity(intent_addsv);

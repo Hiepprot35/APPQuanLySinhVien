@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +45,7 @@ public class AddStudentActivity extends AppCompatActivity {
     Button btn_add_student;
     ImageView img_avatar;
     Button date_picker_add_student;
+    RadioGroup gender_pick;
     Function_user functionUser;
     byte[] imageData;
     private static final int PICK_IMAGE = 1;
@@ -51,6 +54,7 @@ public class AddStudentActivity extends AppCompatActivity {
 
     String classes[];
     String major[] ;
+    String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +62,11 @@ public class AddStudentActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_student);
         dbHelper = new DatabaseHelper(getApplicationContext());
-
+        gender_pick=findViewById(R.id.rdg_gender);
         date_picker_add_student=findViewById(R.id.edtbirthday);
         functionUser=new Function_user();
         edtmaSV=findViewById(R.id.edtmaSV);
+        int selectId=gender_pick.getCheckedRadioButtonId();
         img_avatar = findViewById(R.id.img_avatar);
         edt_phone_number = findViewById(R.id.edtphone);
         btn_add_student = findViewById(R.id.btn_add_student);
@@ -132,6 +137,13 @@ public class AddStudentActivity extends AppCompatActivity {
                 String country = edtcountry.getText().toString();
                 String email = edtEmailSV.getText().toString();
                 String id = edtmaSV.getText().toString();
+                if(selectId!=-1)
+                {
+                    RadioButton selectedButton=findViewById(selectId);
+                    gender=selectedButton.getText().toString();
+
+                }
+
                 if(imageData == null )
                 {
                     Resources resources = getResources();
@@ -150,7 +162,14 @@ public class AddStudentActivity extends AppCompatActivity {
                     }
 
                 }
-                student_new = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, imageData);
+                gender_pick.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton rd=findViewById(checkedId);
+                        gender=rd.getText().toString();
+                    }
+                });
+                student_new = new Student(id, fullname, email, country, gender, number_phone, date, selected_class, selected_major, null, imageData);
                 if ( fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
                 || id.isEmpty()
                 ) {

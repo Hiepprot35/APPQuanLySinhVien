@@ -6,6 +6,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +37,7 @@ public class ClassesActivity extends AppCompatActivity {
     String DATABASE_NAME="quan_ly_sinh_vien.db";
 
     Spinner major_class_spin;
-    EditText edt_maLop, edt_tenLop;
+    EditText edt_maLop, edt_tenLop,edtSearchClass;
     Button btn_insert_lop, btn_update_lop, btn_delete_lop, btn_query_lop;
     DatabaseHelper dbHelper;
     ListView lv;
@@ -54,6 +56,7 @@ public class ClassesActivity extends AppCompatActivity {
         functionUser=new Function_user();
         majors=dbHelper.getAllMajor();
         edt_maLop = findViewById(R.id.edt_malop1);
+        edtSearchClass=findViewById(R.id.edtSearchClass);
         edt_tenLop = findViewById(R.id.edt_tenLop1);
         major_class_spin=findViewById(R.id.spin_major_class);
         btn_insert_lop = findViewById(R.id.btn_insert_lop);
@@ -92,6 +95,23 @@ public class ClassesActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        edtSearchClass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String name=edtSearchClass.getText().toString();
+                    getListClassLike(name);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -217,6 +237,28 @@ public class ClassesActivity extends AppCompatActivity {
         }
         c.close();
         myadapter.notifyDataSetChanged();
+    }
+    public void getListClassLike( String value)
+    {
+        mylist.clear();
+        Cursor c=database.query( "classes",
+                null,
+                "classs_name" + " LIKE ?",
+                new String[]{"%" + value + "%"},
+                null,
+                null,
+                null);
+        c.moveToNext();
+        String data = "";
+        while (c.isAfterLast() == false) {
+            data = c.getString(0) + " - " + c.getString(2)+ " - " + c.getString(1);
+            c.moveToNext();
+            mylist.add(data);
+        }
+        c.close();
+        myadapter.notifyDataSetChanged();
+
+        lv.invalidateViews();
     }
     private String getDatabasePath() {
         return getApplicationInfo().dataDir + DB_PATH_SUFFIX+ DATABASE_NAME;
