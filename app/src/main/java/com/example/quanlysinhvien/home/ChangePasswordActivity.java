@@ -1,6 +1,7 @@
 package com.example.quanlysinhvien.home;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlysinhvien.R;
@@ -38,24 +40,43 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 dbHelper = new DatabaseHelper(getApplicationContext());
                 String now_password = edt_now_password.getText().toString();
                 String new_password = edt_new_password.getText().toString();
-                String msg = "";
+//                String msg = "";
                 if(now_password.isEmpty() || new_password.isEmpty()) {
-                    msg = "Yêu cầu nhập đầy đủ thông tin";
+                    Toast.makeText(ChangePasswordActivity.this,"Yêu cầu nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }else{
                     if(!checkPassword(now_password)) {
-                        msg = "Yêu cầu nhập đúng mật khẩu hiện tại";
+                        Toast.makeText(ChangePasswordActivity.this,"Yêu cầu nhập đúng mật khẩu hiện tại",Toast.LENGTH_SHORT).show();
                     }else{
                         if(new_password.length() < 4) {
-                            msg = "Mật khẩu phải lớn hơn 4 ký tự";
+                            Toast.makeText(ChangePasswordActivity.this,"Mật khẩu phải lớn hơn 4 ký tự",Toast.LENGTH_SHORT).show();
                         }else{
-                            if(changePassword(new_password)) {
-                                msg = "Thay đổi mật khẩu thành công";
-                                finish();
-                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);
+                            builder.setTitle("Xác nhận đổi mật khẩu");
+                            builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu ?");
+                            builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(changePassword(new_password)) {
+                                        Toast.makeText(ChangePasswordActivity.this,"Thay đổi mật khẩu thành công",Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                }
+
+                            });
+                            builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Đóng hộp thoại
+                                        dialog.dismiss();
+                                }
+                            });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
                         }
                     }
                 }
-                Toast.makeText(ChangePasswordActivity.this,msg,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ChangePasswordActivity.this,msg,Toast.LENGTH_SHORT).show();
             }
         });
 

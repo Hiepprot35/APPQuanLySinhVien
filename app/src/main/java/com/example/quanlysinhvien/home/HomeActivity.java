@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -84,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
     private void showOptions() {
         PopupMenu popupMenu = new PopupMenu(HomeActivity.this, txt_useradmin);
         popupMenu.getMenuInflater().inflate(R.menu.pop_menu, popupMenu.getMenu());
+        popupMenu.setGravity(Gravity.END);
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
