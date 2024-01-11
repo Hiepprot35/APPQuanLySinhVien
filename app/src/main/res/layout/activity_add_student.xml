@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/custom_background"
     tools:context=".student.AddStudentActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3_update"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:text="THÊM SINH VIÊN"
-        android:background="#FFEB3B"
-        android:textAlignment="center"
-        android:textColor="#03A9F4"
+        android:background="#2196F3"
         android:gravity="center"
+        android:text="THÊM SINH VIÊN"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -60,7 +59,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="1 1 2002"
-            android:textSize="30sp"
+            android:textSize="18dp"
             android:textColor="@color/black"
             style="?android:spinnerStyle"
             />

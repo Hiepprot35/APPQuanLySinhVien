@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#009688"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".classes.ClassesActivity">
@@ -12,12 +11,12 @@
         android:id="@+id/txt_lop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:text="Quản lý lớp học"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textColor="#FFEB3B"
         android:textSize="20dp"
-        android:textColor="@color/white"
-        android:background="#009688"
-        android:text="Quan ly lop" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,9 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#FFEB3B"
-            android:text="Ma lop:" />
+            android:text="Ma lop:"
+            android:textColor="#050505"
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/edt_malop1"
@@ -39,9 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:textColor="@color/white"
             android:inputType="text"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/black" />
 
 
     </LinearLayout>
@@ -55,9 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#FFEB3B"
-            android:text="Ten lop:" />
+            android:text="Ten lop:"
+            android:textColor="#000000"
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/edt_tenLop1"
@@ -65,15 +64,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:textColor="@color/white"
             android:inputType="text"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/black" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn ngành: "
+            android:textColor="#000000"
+            android:textSize="15dp" />
     <Spinner
             android:id="@+id/spin_major_class"
             android:layout_width="wrap_content"

@@ -28,7 +28,7 @@ public class UserActivity extends AppCompatActivity {
 
 
     DatabaseHelper dbHelper;
-    TextView edtphone_update, edtEmailSV_update, edtcountry_update, edtnameSV_update,edtmaSV_update,txt_major_user,txt_class_user;
+    TextView edtgender_update, edtphone_update, edtEmailSV_update, edtcountry_update, edtnameSV_update,edtmaSV_update,txt_major_user,txt_class_user;
     byte[] avatarData;
     ImageView avatarStudent;
     Button changepass;
@@ -51,6 +51,7 @@ public class UserActivity extends AppCompatActivity {
         edtEmailSV_update = findViewById(R.id.edtEmailSV_user);
         edtnameSV_update = findViewById(R.id.edtnameSV_user);
         edtmaSV_update = findViewById(R.id.edtmaSV_user);
+        edtgender_update = findViewById(R.id.edtgender_user);
         Intent intent = getIntent();
         if (intent != null) {
             String studentId = intent.getStringExtra("user_name");
@@ -68,7 +69,7 @@ public class UserActivity extends AppCompatActivity {
             edtmaSV_update.setText("MSSV: " + student.getId());
             txt_major_user.setText("Ngành: "+dbHelper.getByTableColumn("major","id","major_name",student.getMajor_id()));
             txt_class_user.setText("Lớp: "+dbHelper.getByTableColumn("classes","id","classs_name",student.getClass_id()));
-
+            edtgender_update.setText("Giới tính: "+ student.getGender());
 //            avatarData = student.getAvatar();
 //            Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
 //            avatarStudent.setImageBitmap(bitmap);
