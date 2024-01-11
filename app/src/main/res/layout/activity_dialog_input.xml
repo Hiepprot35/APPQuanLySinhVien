@@ -1,0 +1,25 @@
+<!-- res/layout/dialog_input_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Mã ngành -->
+    <EditText
+        android:id="@+id/editTextMaNganh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mã ngành"
+        android:inputType="text" />
+
+    <!-- Tên ngành -->
+    <EditText
+        android:id="@+id/editTextTenNganh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Tên ngành"
+        android:inputType="text" />
+
+</LinearLayout>

@@ -19,6 +19,15 @@
         android:theme="@style/Theme.QuanLySinhVien"
         tools:targetApi="31">
         <activity
+            android:name=".DialogSpin"
+            android:exported="false" />
+        <activity
+            android:name=".DialogInput"
+            android:exported="false" />
+        <activity
+            android:name=".dialog_input"
+            android:exported="false" />
+        <activity
             android:name=".home.ChangePasswordActivity"
             android:exported="false" />
         <activity
