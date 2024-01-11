@@ -69,9 +69,9 @@ public class UserActivity extends AppCompatActivity {
             txt_major_user.setText("Ngành: "+dbHelper.getByTableColumn("major","id","major_name",student.getMajor_id()));
             txt_class_user.setText("Lớp: "+dbHelper.getByTableColumn("classes","id","classs_name",student.getClass_id()));
 
-            avatarData = student.getAvatar();
-            Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
-            avatarStudent.setImageBitmap(bitmap);
+//            avatarData = student.getAvatar();
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
+//            avatarStudent.setImageBitmap(bitmap);
             changepass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

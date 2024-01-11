@@ -126,7 +126,7 @@ public class AddStudentActivity extends AppCompatActivity {
                 String email = edtEmailSV.getText().toString();
                 String id = edtmaSV.getText().toString();
                 student_new = new Student(id, fullname, email, country, null, number_phone, date, selected_class, selected_major, null, imageData);
-                if (imageData == null || fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
+                if (fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
                 || id.isEmpty()
                 ) {
                     Toast.makeText(AddStudentActivity.this, "Không được để trống thông tin", Toast.LENGTH_LONG).show();

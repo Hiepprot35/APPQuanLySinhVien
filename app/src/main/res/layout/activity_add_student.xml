@@ -140,8 +140,6 @@
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp" />
 
-
-
         <Button
             android:id="@+id/btn_add_student"
             android:layout_width="match_parent"
