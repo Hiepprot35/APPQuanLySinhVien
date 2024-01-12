@@ -32,7 +32,7 @@ public class UserActivity extends AppCompatActivity {
     byte[] avatarData;
     ImageView avatarStudent;
     Button changepass;
-    Button edtbirthday_update;
+    TextView edtbirthday_update;
     Function_user function_user;
     private static final int PICK_IMAGE_UPDATE = 1;
 

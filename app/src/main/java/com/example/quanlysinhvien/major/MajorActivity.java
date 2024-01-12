@@ -141,19 +141,19 @@ public class MajorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String tennganh = edt_tennganh.getText().toString();
                 String manganh = edt_manganh.getText().toString();
-                showInputDialog(tennganh,manganh, database);
+//                showInputDialog(tennganh,manganh, database);
 
-//                ContentValues myvalue = new ContentValues();
-//                myvalue.put("major_name", tennganh);
-//                int n = database.update("major", myvalue, "id = ?", new String[]{manganh});
-//                String msg = "";
-//                if (n == 0) {
-//                    msg = "No record to Update";
-//                } else {
-//                    loading();
-//                    msg = n + "redcord is Updated";
-//                }
-//                Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
+                ContentValues myvalue = new ContentValues();
+                myvalue.put("major_name", tennganh);
+                int n = database.update("major", myvalue, "id = ?", new String[]{manganh});
+                String msg = "";
+                if (n == 0) {
+                    msg = "No record to Update";
+                } else {
+                    loading();
+                    msg =  "Đã cập nhập Ngành " + manganh;
+                }
+                Toast.makeText(MajorActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -180,9 +180,9 @@ public class MajorActivity extends AppCompatActivity {
                 String[] data2 = data.split(" - ");
                 edt_manganh.setText(data2[0]);
                 edt_tennganh.setText(data2[1]);
-                String tennganh = edt_tennganh.getText().toString();
-                String manganh = edt_manganh.getText().toString();
-                showInputDialog(tennganh,manganh,database);
+//                String tennganh = edt_tennganh.getText().toString();
+//                String manganh = edt_manganh.getText().toString();
+//                showInputDialog(tennganh,manganh,database);
             }
         });
     }
