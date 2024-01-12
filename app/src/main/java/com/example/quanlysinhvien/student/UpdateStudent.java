@@ -178,7 +178,7 @@ public class UpdateStudent extends AppCompatActivity {
                         dbHelper.update_Student(updateStudent_data);
                         Intent intent_addsv = new Intent(UpdateStudent.this, StudentActivity.class);
                         startActivity(intent_addsv);
-                        Toast.makeText(UpdateStudent.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UpdateStudent.this, "Cập nhật thành công sinh viên "+id, Toast.LENGTH_LONG).show();
                     }
                 }
 

@@ -29,7 +29,9 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+
+            >
 
             <ImageView
                 android:id="@+id/img_avatar_user"
@@ -44,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:hint="Nhập mã sinh viên"
                 android:layout_marginBottom="10dp"/>
 
@@ -54,15 +56,18 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:hint="Nhập họ tên sinh viên"
                 android:layout_marginBottom="10dp"/>
-            <Button
+            <TextView
                 android:id="@+id/edtbirthday_user"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="1 1 2002"
-                android:textSize="16dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
                 style="?android:spinnerStyle"
                 />
@@ -74,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:hint="Nhập số điện thoại"
                 android:layout_marginBottom="10dp"/>
 
@@ -84,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:hint="Nhập email"
                 android:layout_marginBottom="10dp"/>
 
@@ -94,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:hint="Nhập quê quán"
                 android:layout_marginBottom="10dp"/>
 
@@ -103,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Giới tính"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -113,7 +118,7 @@
                 android:text="Ngành: "
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/txt_class_user"
@@ -121,8 +126,8 @@
                 android:layout_height="wrap_content"
                 android:text="Lớp: "
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="16dp"/>
+                android:layout_marginBottom="20dp"
+                android:textSize="20dp"/>
 
             <Button
                 android:id="@+id/btn_user_student"
