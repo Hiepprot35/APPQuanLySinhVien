@@ -42,6 +42,7 @@ public class AddStudentActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     Student student_new;
     EditText edt_phone_number, edtEmailSV, edtcountry, edtnameSV,edtmaSV;
+//    RadioButton selectNam, selectNu;
     Button btn_add_student;
     ImageView img_avatar;
     Button date_picker_add_student;
@@ -79,6 +80,8 @@ public class AddStudentActivity extends AppCompatActivity {
         edtnameSV = findViewById(R.id.edtnameSV);
         edtcountry = findViewById(R.id.edtcountry);
         edtEmailSV = findViewById(R.id.edtEmailSV);
+//        selectNam = findViewById(R.id.radioButton_nam);
+//        selectNu = findViewById(R.id.radioButton_nu);
         //tạo spinner cho lớp học
         spin_class = findViewById(R.id.spin_class);
         //tạo spinner cho môn học

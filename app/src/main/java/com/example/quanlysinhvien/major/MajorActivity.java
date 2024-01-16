@@ -160,17 +160,8 @@ public class MajorActivity extends AppCompatActivity {
         btn_query_nganh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mylist.clear();
-                Cursor c = database.query("major", null, null, null, null, null, null, null);
-                c.moveToNext();
-                String data = "";
-                while (c.isAfterLast() == false) {
-                    data = c.getString(0) + " - " + c.getString(1);
-                    c.moveToNext();
-                    mylist.add(data);
-                }
-                c.close();
-                myadapter.notifyDataSetChanged();
+                edt_manganh.setText("");
+                edt_tennganh.setText("");
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

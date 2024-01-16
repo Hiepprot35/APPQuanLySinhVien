@@ -59,6 +59,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="1 1 2002"
+            android:paddingLeft="9dp"
             android:textSize="18dp"
             android:textColor="@color/black"
             style="?android:spinnerStyle"

@@ -196,7 +196,8 @@ public class SubjectActivity extends AppCompatActivity {
         btn_query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading();
+                edt_mamon.setText("");
+                edt_tenmon.setText("");
             }
         });
 
