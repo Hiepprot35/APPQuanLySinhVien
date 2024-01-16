@@ -68,6 +68,12 @@ public class AddStudentActivity extends AppCompatActivity {
         functionUser=new Function_user();
         edtmaSV=findViewById(R.id.edtmaSV);
         int selectId=gender_pick.getCheckedRadioButtonId();
+        if(selectId!=-1)
+        {
+            RadioButton selectedButton=findViewById(selectId);
+            gender=selectedButton.getText().toString();
+
+        }
         img_avatar = findViewById(R.id.img_avatar);
         edt_phone_number = findViewById(R.id.edtphone);
         btn_add_student = findViewById(R.id.btn_add_student);
@@ -131,6 +137,13 @@ public class AddStudentActivity extends AppCompatActivity {
 
             }
         });
+        gender_pick.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rd=findViewById(checkedId);
+                gender=rd.getText().toString();
+            }
+        });
         btn_add_student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,12 +153,7 @@ public class AddStudentActivity extends AppCompatActivity {
                 String country = edtcountry.getText().toString();
                 String email = edtEmailSV.getText().toString();
                 String id = edtmaSV.getText().toString();
-                if(selectId!=-1)
-                {
-                    RadioButton selectedButton=findViewById(selectId);
-                    gender=selectedButton.getText().toString();
 
-                }
 
                 if(imageData == null )
                 {
@@ -165,14 +173,12 @@ public class AddStudentActivity extends AppCompatActivity {
                     }
 
                 }
-                gender_pick.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        RadioButton rd=findViewById(checkedId);
-                        gender=rd.getText().toString();
-                    }
-                });
+
+
+
                 student_new = new Student(id, fullname, email, country, gender, number_phone, date, selected_class, selected_major, null, imageData);
+                Log.d("GioiTinh",student_new.getGender());
+
                 if ( fullname.isEmpty() || date.isEmpty()||number_phone.isEmpty()||country.isEmpty()
                 || id.isEmpty()
                 ) {
