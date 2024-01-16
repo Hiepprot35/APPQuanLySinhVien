@@ -36,7 +36,6 @@ public class StudentActivity extends AppCompatActivity {
         btn_searchSV=findViewById(R.id.btn_searchSV);
         student_listview=findViewById(R.id.lv_sv);
         list_student=dbHelper.getAllStudent();
-
         studentAdapter=new StudentAdapter(this,list_student,dbHelper);
 //        btn_searchSV.setOnClickListener(new View.OnClickListener() {
 //            @Override

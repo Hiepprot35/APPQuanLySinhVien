@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     Toast.makeText(ChangePasswordActivity.this,"Yêu cầu nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }else{
                     if(!checkPassword(now_password)) {
+
                         Toast.makeText(ChangePasswordActivity.this,"Yêu cầu nhập đúng mật khẩu hiện tại",Toast.LENGTH_SHORT).show();
                     }else{
                         if(new_password.length() < 4) {
@@ -103,7 +105,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             String currentPassword = cursor.getString(0);
             cursor.close();
-
+            Log.d("input",now_password);
+            Log.d("now_input",currentPassword);
             // Kiểm tra xem mật khẩu cũ nhập vào có khớp với mật khẩu hiện tại trong cơ sở dữ liệu
             return currentPassword.equals(now_password);
         }

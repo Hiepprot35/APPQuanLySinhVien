@@ -82,13 +82,25 @@ public class UpdateStudent extends AppCompatActivity {
             edtnameSV_update.setText(student.getFullname());
             edtmaSV_update.setText( student.getId());
             avatarData=student.getAvatar();
+            gender=student.getGender();
             classes= dbHelper.getAllClassesbyMajor(student.getMajor_id());
-            int selectedId=rdg_gender_update.getCheckedRadioButtonId();
-            if(selectedId!=1)
+            RadioButton nam_radio=findViewById(R.id.radioButton_nam_update);
+            RadioButton nu_radio=findViewById(R.id.radioButton_nu_update);
+
+            if(gender.equals(nam_radio.getText().toString()))
             {
-                RadioButton gender_radio=findViewById(selectedId);
-                gender=gender_radio.getText().toString();
+                nam_radio.setChecked(true);
             }
+            else
+            {
+                nu_radio.setChecked(true);
+            }
+//            int selectedId=rdg_gender_update.getCheckedRadioButtonId();
+//            if(selectedId!=1)
+//            {
+//                RadioButton gender_radio=findViewById(selectedId);
+//                gender=gender_radio.getText().toString();
+//            }
             majors=dbHelper.getAllMajor();
             ArrayAdapter<String> spin_major_adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,majors);
             spin_major_update.setAdapter(spin_major_adapter);

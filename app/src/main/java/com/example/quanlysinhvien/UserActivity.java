@@ -79,7 +79,7 @@ public class UserActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent=new Intent(UserActivity.this, ChangePasswordActivity.class);
                     intent.putExtra("user_name", student.getId());
-                    intent.putExtra("password", student.getId());
+                    intent.putExtra("password", student.getPhone_number());
                     startActivity(intent);
 
                 }

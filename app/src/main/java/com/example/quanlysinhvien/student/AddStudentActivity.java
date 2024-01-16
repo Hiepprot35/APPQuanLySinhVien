@@ -71,7 +71,6 @@ public class AddStudentActivity extends AppCompatActivity {
         {
             RadioButton selectedButton=findViewById(selectId);
             gender=selectedButton.getText().toString();
-
         }
         img_avatar = findViewById(R.id.img_avatar);
         edt_phone_number = findViewById(R.id.edtphone);
