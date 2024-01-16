@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,11 +100,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         String query = "SELECT password FROM user WHERE username = ?";
         Cursor cursor = db.rawQuery(query, new String[]{username});
-
+        Log.d("username",username);
         if (cursor.moveToFirst()) {
             String currentPassword = cursor.getString(0);
             cursor.close();
-
+            Log.d("now_pass",currentPassword);
+            Log.d("input_pass",now_password);
             // Kiểm tra xem mật khẩu cũ nhập vào có khớp với mật khẩu hiện tại trong cơ sở dữ liệu
             return currentPassword.equals(now_password);
         }
