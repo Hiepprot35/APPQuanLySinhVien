@@ -189,7 +189,8 @@ public class ClassesActivity extends AppCompatActivity {
         btn_query_lop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading();
+                edt_maLop.setText("");
+                edt_tenLop.setText("");
             }
         });
 
