@@ -21,13 +21,11 @@ public class HomeAdapter extends ArrayAdapter<Home> {
     Activity context;
     int IdLayout;
     List<Home> homelist;
-
     public HomeAdapter(@NonNull Activity context,  List<Home> homelist) {
         super(context, 0 ,homelist);
         this.context = context;
         this.homelist = homelist;
     }
-
     @NonNull
     @Nullable
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -41,5 +39,4 @@ public class HomeAdapter extends ArrayAdapter<Home> {
         name_manager.setText(myhome.getName_manager());
         return convertView;
     }
-
 }
