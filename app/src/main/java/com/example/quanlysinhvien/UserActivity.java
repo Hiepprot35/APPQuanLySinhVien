@@ -79,86 +79,79 @@ public class UserActivity extends AppCompatActivity {
             txt_class_user.setText("Lớp: "+dbHelper.getByTableColumn("classes","id","classs_name",student.getClass_id()));
             edtgender_update.setText("Giới tính: "+ student.getGender());
             txtuser_update.setText(student.getFullname());
-            txtuser_update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showOptions();
-                }
-            });
+//            txtuser_update.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    showOptions();
+//                }
+//            });
 
 //            avatarData = student.getAvatar();
 //            Bitmap bitmap = BitmapFactory.decodeByteArray(student.getAvatar(), 0, student.getAvatar().length);
 //            avatarStudent.setImageBitmap(bitmap);
 
-//            changepass.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent=new Intent(UserActivity.this, ChangePasswordActivity.class);
-//                    intent.putExtra("user_name", student.getId());
-//                    intent.putExtra("password", student.getId());
-//                    startActivity(intent);
-//
-//                }
-//            });
+            changepass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(UserActivity.this, ChangePasswordActivity.class);
+                    intent.putExtra("user_name", student.getId());
+                    intent.putExtra("password", student.getId());
+                    startActivity(intent);
+
+                }
+            });
         }
     }
-    private void showOptions() {
-        PopupMenu popupMenu = new PopupMenu(UserActivity.this, txtuser_update);
-        popupMenu.getMenuInflater().inflate(R.menu.pop_menu, popupMenu.getMenu());
-        popupMenu.setGravity(Gravity.END);
-
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.menu_update) {
-                    updateUserAdmin();
-                    return true;
-                }
-                if(item.getItemId() == R.id.menu_logout) {
-                    LogoutUserAdmin(); return true;
-                }
-                return false;
-            }
-
-        });
-
-        popupMenu.show();
-    }
-
-    private void updateUserAdmin() {
-        changepass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(UserActivity.this, ChangePasswordActivity.class);
-                intent.putExtra("user_name", student.getId());
-                intent.putExtra("password", student.getId());
-                startActivity(intent);
-
-            }
-        });
-    }
-
-    private void LogoutUserAdmin() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
-        builder.setTitle("Xác nhận đăng xuất");
-        builder.setMessage("Bạn có chắc chắn muốn đăng xuất ?");
-        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Đóng hộp thoại
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
+//    private void showOptions() {
+//        PopupMenu popupMenu = new PopupMenu(UserActivity.this, txtuser_update);
+//        popupMenu.getMenuInflater().inflate(R.menu.pop_menu, popupMenu.getMenu());
+//        popupMenu.setGravity(Gravity.END);
+//
+//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                if(item.getItemId() == R.id.menu_update) {
+//                    updateUserAdmin();
+//                    return true;
+//                }
+//                if(item.getItemId() == R.id.menu_logout) {
+//                    LogoutUserAdmin(); return true;
+//                }
+//                return false;
+//            }
+//
+//        });
+//
+//        popupMenu.show();
+//    }
+//
+//    private void updateUserAdmin() {
+//        String username = txtuser_update.getText().toString();
+//        Intent intent=new Intent(UserActivity.this, ChangePasswordActivity.class);
+//        intent.putExtra("user_name", username);
+//        startActivity(intent);
+//    }
+//
+//    private void LogoutUserAdmin() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+//        builder.setTitle("Xác nhận đăng xuất");
+//        builder.setMessage("Bạn có chắc chắn muốn đăng xuất ?");
+//        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//        builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//    }
 
 
 }
