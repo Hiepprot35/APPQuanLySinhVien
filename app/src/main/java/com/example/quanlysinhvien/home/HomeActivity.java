@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.example.quanlysinhvien.InfoActivity;
 import com.example.quanlysinhvien.R;
 import com.example.quanlysinhvien.classes.ClassesActivity;
 import com.example.quanlysinhvien.database.DatabaseHelper;
@@ -67,6 +68,10 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 if(Objects.equals(name_home[position], name_home[3])) {
                     myintent = new Intent(HomeActivity.this, MajorActivity.class);
+                    startActivity(myintent);
+                }
+                if(Objects.equals(name_home[position], name_home[4])) {
+                    myintent = new Intent(HomeActivity.this, InfoActivity.class);
                     startActivity(myintent);
                 }
 

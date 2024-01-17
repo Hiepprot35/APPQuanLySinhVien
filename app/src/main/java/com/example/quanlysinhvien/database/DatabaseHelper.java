@@ -313,6 +313,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         db.close();
     }
+
+    //kiem tra username, passsword khi login
     public boolean checkUser(String username, String password) {
 //        List<User> user = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -331,6 +333,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     return false;
     }
+
+    //check quyen de vao giao dien admin hay user
     public int checkRole(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.query("user", new String[]  {"role"}, "username=?",new String[] {username} , null, null, null, null);
@@ -340,6 +344,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return role_data;
     }
+
+    //kiem tra username da ton tai chua
     public boolean isUsernameExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
 
